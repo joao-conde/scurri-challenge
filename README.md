@@ -1,1 +1,3 @@
-# scurri-challenge
+# Scurri Coding Challenge
+
+Scurri coding challenge solution.
