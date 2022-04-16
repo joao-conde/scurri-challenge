@@ -1,0 +1,11 @@
+name: Main Workflow
+on: [push]
+jobs:
+  build:
+    name: Build
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: python --version
+      - run: cd 2/ && python setup.py test
