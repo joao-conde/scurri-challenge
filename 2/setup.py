@@ -1,3 +1,4 @@
+import os
 import setuptools
 
 setuptools.setup(
@@ -7,7 +8,14 @@ setuptools.setup(
     author_email = "joaodiasconde@gmail.com",
     description = "Postcode utilities",
     keywords = "postcodes shipping",
-    test_suite = "test",
+    packages = [
+        "postcode",
+        "postcode.test"
+    ],
+    package_dir = {
+        "" : os.path.normpath("src")
+    },
+    test_suite = "postcode.test",
     classifiers = [
         "Operating System :: OS Independent",
         "Programming Language :: Python",
