@@ -26,6 +26,3 @@ class PostcodeUK(Postcode):
         cls = self.__class__
         if not cls.is_valid(code):
             raise ValueError("Invalid UK postal code format")
-
-        self.area = ""
-        self.district = ""
