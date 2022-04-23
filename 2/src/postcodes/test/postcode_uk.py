@@ -49,3 +49,22 @@ class PostcodeUKTest(
     def test_init(self):
         self.assertNotRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q"))
         self.assertNotRaises(ValueError, lambda: PostcodeUK("L1 8JQ"))
+
+    def test_str(self):
+        display = PostcodeUK("L1 8JQ").__str__()
+        self.assertEqual(display, "PostcodeUK({'code': 'L1 8JQ', 'outward': 'L1', 'inward': '8JQ', 'area': 'L', 'district': '1', 'sector': '8', 'unit': 'JQ'})")
+
+        display = PostcodeUK("PO16 7GZ").__str__()
+        self.assertEqual(display, "PostcodeUK({'code': 'PO16 7GZ', 'outward': 'PO16', 'inward': '7GZ', 'area': 'PO', 'district': '16', 'sector': '7', 'unit': 'GZ'})")
+
+        display = PostcodeUK("GU16 7HF").__str__()
+        self.assertEqual(display, "PostcodeUK({'code': 'GU16 7HF', 'outward': 'GU16', 'inward': '7HF', 'area': 'GU', 'district': '16', 'sector': '7', 'unit': 'HF'})")
+
+        display = PostcodeUK("ASCN 1ZZ").__str__()
+        self.assertEqual(display, "PostcodeUK({'code': 'ASCN 1ZZ', 'outward': 'ASCN', 'inward': '1ZZ'})")
+
+        display = PostcodeUK("BBND 1ZZ").__str__()
+        self.assertEqual(display, "PostcodeUK({'code': 'BBND 1ZZ', 'outward': 'BBND', 'inward': '1ZZ'})")
+
+        display = PostcodeUK("SIQQ 1ZZ").__str__()
+        self.assertEqual(display, "PostcodeUK({'code': 'SIQQ 1ZZ', 'outward': 'SIQQ', 'inward': '1ZZ'})")
