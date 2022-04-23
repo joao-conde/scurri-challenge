@@ -1,7 +1,7 @@
 class PostcodeI:
 
     @classmethod
-    def is_valid(cls, code: str, format: bool = False) -> bool:
+    def is_valid(cls, code: str) -> bool:
         raise NotImplementedError()
 
     @classmethod
