@@ -38,18 +38,18 @@ class PostcodeUKTest(
         self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L1 8JQ"))
         self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q", validate = False))
 
-    def test_format_code(self):
-        code = postcode.PostcodeUK.format_code("L1 8JQ")
+    def test_format(self):
+        code = postcode.PostcodeUK.format("L1 8JQ")
         self.assertEqual(code, "L1 8JQ")
 
-        code = postcode.PostcodeUK.format_code("BBND1ZZ")
+        code = postcode.PostcodeUK.format("BBND1ZZ")
         self.assertEqual(code, "BBND 1ZZ")
 
-        code = postcode.PostcodeUK.format_code("G U1   6 7H   F")
+        code = postcode.PostcodeUK.format("G U1   6 7H   F")
         self.assertEqual(code, "GU16 7HF")
 
-        code = postcode.PostcodeUK.format_code("B BN D1ZZ")
+        code = postcode.PostcodeUK.format("B BN D1ZZ")
         self.assertEqual(code, "BBND 1ZZ")
 
-        code = postcode.PostcodeUK.format_code("S IQQ 1 ZZ")
+        code = postcode.PostcodeUK.format("S IQQ 1 ZZ")
         self.assertEqual(code, "SIQQ 1ZZ")

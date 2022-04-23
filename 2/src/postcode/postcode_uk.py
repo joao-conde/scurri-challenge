@@ -9,11 +9,11 @@ POSTCODE_REGEX = re.compile(POSTCODE_REGEX_VALUE)
 class PostcodeUK(Postcode):
     @classmethod
     def is_valid(cls, code: str, format = False):
-        if format: code = cls.format_code(code)
+        if format: code = cls.format(code)
         return POSTCODE_REGEX.match(code) != None
 
     @classmethod
-    def format_code(cls, code: str):
+    def format(cls, code: str):
         # remove all unecessary white space and add mandatory
         # white space before three last characters
         code = code.replace(" ", "")
