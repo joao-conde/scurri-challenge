@@ -11,12 +11,12 @@ SPECIAL_POSTCODE_REGEX = re.compile(SPECIAL_POSTCODE_REGEX_VALUE)
 class PostcodeUK(PostcodeI):
 
     @classmethod
-    def is_valid(cls, code: str, format: bool = False):
+    def is_valid(cls, code: str, format: bool = False) -> bool:
         if format: code = cls.format(code)
         return cls.is_regular(code) or cls.is_special(code)
 
     @classmethod
-    def format(cls, code: str):
+    def format(cls, code: str) -> str:
         # remove all unecessary white space and add mandatory
         # white space before three last characters
         code = code.replace(" ", "")
@@ -24,11 +24,11 @@ class PostcodeUK(PostcodeI):
         return code
 
     @classmethod
-    def is_regular(cls, code: str):
+    def is_regular(cls, code: str) -> bool:
         return POSTCODE_REGEX.match(code) != None
 
     @classmethod
-    def is_special(cls, code: str):
+    def is_special(cls, code: str) -> bool:
         return not cls.is_regular(code) and SPECIAL_POSTCODE_REGEX.match(code) != None
 
     def __init__(self, code: str):
@@ -50,5 +50,5 @@ class PostcodeUK(PostcodeI):
             self.sector = self.inward[0]
             self.unit = self.inward[1:]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "PostcodeUK(" + str(vars(self)) + ")"

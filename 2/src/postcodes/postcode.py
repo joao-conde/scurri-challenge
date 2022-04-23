@@ -1,5 +1,6 @@
 from enum import Enum
 
+from .interface import PostcodeI
 from .postcode_uk import PostcodeUK
 
 class Country(Enum):
@@ -12,5 +13,5 @@ class Postcode:
     }
 
     @classmethod
-    def build(cls, country: Country, code: str, **kwargs):
+    def build(cls, country: Country, code: str, **kwargs) -> PostcodeI:
         return cls.BUILDERS[country](code, **kwargs)
