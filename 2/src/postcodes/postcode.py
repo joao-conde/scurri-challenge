@@ -4,9 +4,16 @@ from .interface import PostcodeI
 from .postcode_uk import PostcodeUK
 
 class Country(Enum):
+    """
+    Enum of countries with postcode implementations in this package.
+    """
+
     UNITED_KINGDOM = "united_kingdom"
 
 class Postcode(PostcodeI):
+    """
+    Postcode builder that abstracts concrete country implementations.
+    """
 
     BUILDERS = {
         Country.UNITED_KINGDOM: PostcodeUK

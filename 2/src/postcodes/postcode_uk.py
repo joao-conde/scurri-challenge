@@ -3,12 +3,19 @@ import re
 from .interface import PostcodeI
 
 POSTCODE_REGEX_VALUE = "^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$"
-POSTCODE_REGEX = re.compile(POSTCODE_REGEX_VALUE)
+""" Regex expression that matches only regular UK postcodes """
 
 SPECIAL_POSTCODE_REGEX_VALUE = "^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}|BFPO ?[0-9]{1,4}|(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}|[A-Z]{2} ?[0-9]{2}|GE ?CX|GIR ?0A{2}|SAN ?TA1)$"
+""" Regex expression that matches all valid UK postcodes (both regular and special ones) """
+
+POSTCODE_REGEX = re.compile(POSTCODE_REGEX_VALUE)
+
 SPECIAL_POSTCODE_REGEX = re.compile(SPECIAL_POSTCODE_REGEX_VALUE)
 
 class PostcodeUK(PostcodeI):
+    """
+    United Kingdom postcode model and set of utilities.
+    """
 
     @classmethod
     def is_valid(cls, code: str) -> bool:
