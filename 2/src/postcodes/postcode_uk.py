@@ -15,20 +15,20 @@ class PostcodeUK(PostcodeI):
         return cls.is_regular(code) or cls.is_special(code)
 
     @classmethod
-    def format(cls, code: str) -> str:
-        # remove all unecessary white space and add mandatory
-        # white space before three last characters
-        code = code.replace(" ", "")
-        code = code[:-3] + " " + code[-3:]
-        return code
-
-    @classmethod
     def is_regular(cls, code: str) -> bool:
         return POSTCODE_REGEX.match(code) != None
 
     @classmethod
     def is_special(cls, code: str) -> bool:
         return not cls.is_regular(code) and SPECIAL_POSTCODE_REGEX.match(code) != None
+
+    @classmethod
+    def format(cls, code: str) -> str:
+        # remove all unecessary white space and add mandatory
+        # white space before three last characters
+        code = code.replace(" ", "")
+        code = code[:-3] + " " + code[-3:]
+        return code
 
     @classmethod
     def resolve_parts(cls, code: str) -> dict:

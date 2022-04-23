@@ -30,6 +30,20 @@ class PostcodeUKTest(
         is_valid = PostcodeUK.is_valid("SIQQ 1ZZ")
         self.assertTrue(is_valid)
 
+    def test_is_regular(self):
+        is_regular = PostcodeUK.is_regular("L1 8JQ")
+        self.assertTrue(is_regular)
+
+        is_regular = PostcodeUK.is_regular("ASCN 1ZZ")
+        self.assertFalse(is_regular)
+
+    def test_is_special(self):
+        is_special = PostcodeUK.is_special("L1 8JQ")
+        self.assertFalse(is_special)
+
+        is_special = PostcodeUK.is_special("ASCN 1ZZ")
+        self.assertTrue(is_special)
+
     def test_format(self):
         code = PostcodeUK.format("L1 8JQ")
         self.assertEqual(code, "L1 8JQ")
@@ -45,6 +59,25 @@ class PostcodeUKTest(
 
         code = PostcodeUK.format("S IQQ 1 ZZ")
         self.assertEqual(code, "SIQQ 1ZZ")
+
+    def test_resolve_parts(self):
+        parts = PostcodeUK.resolve_parts("L1 8JQ")
+        self.assertEqual(parts, dict(
+            code = "L1 8JQ",
+            outward = "L1",
+            inward = "8JQ",
+            area = "L",
+            district = "1",
+            sector = "8",
+            unit = "JQ"
+        ))
+
+        parts = PostcodeUK.resolve_parts("ASCN 1ZZ")
+        self.assertEqual(parts, dict(
+            code = "ASCN 1ZZ",
+            outward = "ASCN",
+            inward = "1ZZ"
+        ))
 
     def test_init(self):
         self.assertNotRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q"))
