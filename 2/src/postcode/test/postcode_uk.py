@@ -2,11 +2,11 @@ import unittest
 
 import postcode
 
-from .utils import TestUtilsMixin
+from . import mixins
 
 class PostcodeUKTest(
     unittest.TestCase,
-    TestUtilsMixin
+    mixins.TestUtilsMixin
 ):
     def test_is_valid(self):
         is_valid = postcode.PostcodeUK.is_valid("L 1 8 J Q")
@@ -33,11 +33,6 @@ class PostcodeUKTest(
         is_valid = postcode.PostcodeUK.is_valid("SIQQ 1ZZ")
         self.assertTrue(is_valid)
 
-    def test_init(self):
-        self.assertRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q"))
-        self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L1 8JQ"))
-        self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q", validate = False))
-
     def test_format(self):
         code = postcode.PostcodeUK.format("L1 8JQ")
         self.assertEqual(code, "L1 8JQ")
@@ -53,3 +48,8 @@ class PostcodeUKTest(
 
         code = postcode.PostcodeUK.format("S IQQ 1 ZZ")
         self.assertEqual(code, "SIQQ 1ZZ")
+
+    def test_init(self):
+        self.assertRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q"))
+        self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L1 8JQ"))
+        self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q", validate = False))

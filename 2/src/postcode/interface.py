@@ -1,4 +1,4 @@
-class Interface:
+class PostcodeI:
 
     @classmethod
     def is_valid(cls, code: str, format = False):
