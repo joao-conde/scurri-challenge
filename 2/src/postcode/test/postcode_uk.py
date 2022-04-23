@@ -50,5 +50,6 @@ class PostcodeUKTest(
         self.assertEqual(code, "SIQQ 1ZZ")
 
     def test_init(self):
-        self.assertRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q"))
+        self.assertRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q", format = False))
+        self.assertNotRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q"))
         self.assertNotRaises(ValueError, lambda: PostcodeUK("L1 8JQ"))

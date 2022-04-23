@@ -12,5 +12,5 @@ class Postcode:
     }
 
     @classmethod
-    def build(cls, country: Country, code: str):
-        return cls.BUILDERS[country](code)
+    def build(cls, country: Country, code: str, **kwargs):
+        return cls.BUILDERS[country](code, **kwargs)

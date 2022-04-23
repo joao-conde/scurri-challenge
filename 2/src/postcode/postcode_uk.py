@@ -9,7 +9,7 @@ POSTCODE_REGEX = re.compile(POSTCODE_REGEX_VALUE)
 class PostcodeUK(PostcodeI):
 
     @classmethod
-    def is_valid(cls, code: str, format = False):
+    def is_valid(cls, code: str, format: bool = False):
         if format: code = cls.format(code)
         return POSTCODE_REGEX.match(code) != None
 
@@ -21,12 +21,15 @@ class PostcodeUK(PostcodeI):
         code = code[:-3] + " " + code[-3:]
         return code
 
-    def __init__(self, code: str):
+    def __init__(self, code: str, format: bool = True):
         cls = self.__class__
+
+        # by default formats the postal code
+        if format: code = cls.format(code)
 
         # if validation was requested and this code is not a valid
         # UK postal code, raise a value error
         if not cls.is_valid(code):
             raise ValueError("Invalid UK postal code '%s'" % code)
 
-        self.code = cls.format(code)
+        self.code = code
