@@ -14,9 +14,7 @@ Scurri coding challenge solutions.
 
 ## Challenge 2
 
-> *"Write a library that supports validating and formatting postcodes for the UK. The details of which postcodes are valid and which are the parts they consist of can be [found here.](https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Formatting)
-The API that this library provides is your choice.
-Please make sure you write the library yourself and the API is then to use the library that you created. Ensure there are functions in order to format. Show all tests written so our engineer can see your thought process"*
+> *"Write a library that supports validating and formatting postcodes for the UK. The details of which postcodes are valid and which are the parts they consist of can be [found here.](https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Formatting)."*
 
 ### Installing
 
