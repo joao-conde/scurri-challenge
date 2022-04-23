@@ -9,10 +9,6 @@ class PostcodeTest(
     mixins.TestUtilsMixin
 ):
     def test_build(self):
-        self.assertRaises(
-            ValueError,
-            lambda: Postcode.build(Country.UNITED_KINGDOM, "L 1 8 J Q", format = False)
-        )
         self.assertNotRaises(
             ValueError,
             lambda: Postcode.build(Country.UNITED_KINGDOM, "L 1 8 J Q")

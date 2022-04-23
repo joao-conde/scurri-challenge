@@ -21,15 +21,24 @@ class PostcodeUK(PostcodeI):
         code = code[:-3] + " " + code[-3:]
         return code
 
-    def __init__(self, code: str, format: bool = True):
+    def __init__(self, code: str):
         cls = self.__class__
 
-        # by default formats the postal code
-        if format: code = cls.format(code)
+        # formats the postal code
+        code = cls.format(code)
 
         # if validation was requested and this code is not a valid
         # UK postal code, raise a value error
         if not cls.is_valid(code):
             raise ValueError("Invalid UK postal code '%s'" % code)
 
+        # resolves the several components of an UK postal code
         self.code = code
+        self.outward, self.inward = self.code.split(" ", 1)
+        self.sector = self.inward[0]
+        self.unit = self.inward[1:]
+        self.area = self.outward[:2] if self.outward[1].isalpha() else self.outward[0]
+        self.district = self.outward[2:] if self.outward[1].isalpha() else self.outward[1:]
+
+    def __str__(self):
+        return "%s-%s-%s" % (self.code, self.outward, self.inward)

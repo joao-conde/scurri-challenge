@@ -12,9 +12,6 @@ class PostcodeUKTest(
         is_valid = PostcodeUK.is_valid("L 1 8 J Q")
         self.assertFalse(is_valid)
 
-        is_valid = PostcodeUK.is_valid("L 1 8 J Q", format = True)
-        self.assertTrue(is_valid)
-
         is_valid = PostcodeUK.is_valid("L1 8JQ")
         self.assertTrue(is_valid)
 
@@ -50,6 +47,5 @@ class PostcodeUKTest(
         self.assertEqual(code, "SIQQ 1ZZ")
 
     def test_init(self):
-        self.assertRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q", format = False))
         self.assertNotRaises(ValueError, lambda: PostcodeUK("L 1 8 J Q"))
         self.assertNotRaises(ValueError, lambda: PostcodeUK("L1 8JQ"))
