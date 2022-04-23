@@ -34,8 +34,9 @@ class PostcodeUKTest(
         self.assertTrue(is_valid)
 
     def test_init(self):
-        self.assertRaises(ValueError, lambda: postcode.PostcodeUK("123"))
+        self.assertRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q"))
         self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L1 8JQ"))
+        self.assertNotRaises(ValueError, lambda: postcode.PostcodeUK("L 1 8 J Q", validate = False))
 
     def test_format_code(self):
         code = postcode.PostcodeUK.format_code("L1 8JQ")

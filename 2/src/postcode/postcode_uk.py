@@ -20,9 +20,10 @@ class PostcodeUK(Postcode):
         code = code[:-3] + " " + code[-3:]
         return code
 
-    def __init__(self, code: str):
-        # if this code is not a valid UK
-        # postal code, raise an error
+    def __init__(self, code: str, validate = True):
         cls = self.__class__
-        if not cls.is_valid(code):
-            raise ValueError("Invalid UK postal code format")
+
+        # if validation was requested and this code is not a valid
+        # UK postal code, raise a value error
+        if validate and not cls.is_valid(code):
+            raise ValueError("Invalid UK postal code '%s'" % code)
