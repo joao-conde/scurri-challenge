@@ -1,3 +1,3 @@
-from postcode import Postcode, Country
+from postcodes import Postcode, Country
 
-postcode1 = Postcode.build(Country.UNITED_KINGDOM, "L1 8JQ")
+postcode = Postcode.build(Country.UNITED_KINGDOM, "L1 8JQ")

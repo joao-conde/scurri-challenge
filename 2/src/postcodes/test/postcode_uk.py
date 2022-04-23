@@ -1,6 +1,6 @@
 import unittest
 
-from postcode import PostcodeUK
+from postcodes import PostcodeUK
 
 from . import mixins
 

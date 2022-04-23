@@ -18,3 +18,19 @@ Write a library that supports validating and formatting postcodes for the UK. Th
 
 The API that this library provides is your choice.
 Please make sure you write the library yourself and the API is then to use the library that you created. Ensure there are functions in order to format. Show all tests written so our engineer can see your thought process
+
+### Tests
+
+To run the tests use:
+
+```bash
+python setup.py test
+```
+
+### Examples
+
+To run the examples use:
+
+```bash
+PYTHONPATH=src python examples/build.py
+```
