@@ -11,8 +11,7 @@ SPECIAL_POSTCODE_REGEX = re.compile(SPECIAL_POSTCODE_REGEX_VALUE)
 class PostcodeUK(PostcodeI):
 
     @classmethod
-    def is_valid(cls, code: str, format: bool = False) -> bool:
-        if format: code = cls.format(code)
+    def is_valid(cls, code: str) -> bool:
         return cls.is_regular(code) or cls.is_special(code)
 
     @classmethod
@@ -31,24 +30,31 @@ class PostcodeUK(PostcodeI):
     def is_special(cls, code: str) -> bool:
         return not cls.is_regular(code) and SPECIAL_POSTCODE_REGEX.match(code) != None
 
+    @classmethod
+    def resolve_parts(cls, code: str) -> dict:
+        parts = dict()
+        parts["code"] = code
+        parts["outward"], parts["inward"] = code.split(" ", 1)
+        if cls.is_regular(code):
+            parts["area"] = parts["outward"][:2] if parts["outward"][1].isalpha() else parts["outward"][0]
+            parts["district"] = parts["outward"][2:] if parts["outward"][1].isalpha() else parts["outward"][1:]
+            parts["sector"] = parts["inward"][0]
+            parts["unit"] = parts["inward"][1:]
+        return parts
+
     def __init__(self, code: str):
         cls = self.__class__
 
         # formats the postal code
         code = cls.format(code)
 
-        # if validation was requested and this code is not a valid
-        # UK postal code, raise a value error
+        # if this code is not a valid UK postal code, raise an error
         if not cls.is_valid(code):
             raise ValueError("Invalid UK postal code '%s'" % code)
 
-        self.code = code
-        self.outward, self.inward = self.code.split(" ", 1)
-        if cls.is_regular(code):
-            self.area = self.outward[:2] if self.outward[1].isalpha() else self.outward[0]
-            self.district = self.outward[2:] if self.outward[1].isalpha() else self.outward[1:]
-            self.sector = self.inward[0]
-            self.unit = self.inward[1:]
+        # assign resolved parts to current instance
+        parts = cls.resolve_parts(code)
+        for part in parts: setattr(self, part, parts[part])
 
     def __str__(self) -> str:
         return "PostcodeUK(" + str(vars(self)) + ")"
