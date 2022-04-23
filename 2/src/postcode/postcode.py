@@ -12,6 +12,6 @@ class Postcode:
     }
 
     @classmethod
-    def build(cls, country: Country):
-        if country not in cls.COUNTRIES: return None
-        return cls.COUNTRIES[country]
+    def build(cls, country: Country, *args, **kwargs):
+        if country not in cls.BUILDERS: return None
+        return cls.BUILDERS[country](args, kwargs)

@@ -1,6 +1,6 @@
 import unittest
 
-import postcode
+from postcode import PostcodeI
 
 from . import mixins
 
@@ -9,7 +9,7 @@ class InterfaceTest(
     mixins.TestUtilsMixin
 ):
     def test_is_valid(self):
-        self.assertRaises(NotImplementedError, lambda: postcode.PostcodeI.is_valid("L1 8JQ"))
+        self.assertRaises(NotImplementedError, lambda: PostcodeI.is_valid("L1 8JQ"))
 
     def test_format(self):
-        self.assertRaises(NotImplementedError, lambda: postcode.PostcodeI.format("BBND1ZZ"))
+        self.assertRaises(NotImplementedError, lambda: PostcodeI.format("BBND1ZZ"))
