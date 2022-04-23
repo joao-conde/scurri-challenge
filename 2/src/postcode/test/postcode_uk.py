@@ -5,8 +5,8 @@ import postcode
 from .utils import TestUtilsMixin
 
 class PostcodeUKTest(
-    TestUtilsMixin,
-    unittest.TestCase
+    unittest.TestCase,
+    TestUtilsMixin
 ):
     def test_is_valid(self):
         is_valid = postcode.PostcodeUK.is_valid("123")

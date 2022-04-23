@@ -1,6 +1,4 @@
-import unittest
-
-class TestUtilsMixin(unittest.TestCase):
+class TestUtilsMixin():
     def assertNotRaises(self, error_type, func):
         try:
             func()
