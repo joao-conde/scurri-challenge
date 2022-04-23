@@ -31,8 +31,6 @@ class PostcodeUK(PostcodeI):
 
     @classmethod
     def format(cls, code: str) -> str:
-        # remove all unecessary white space and add mandatory
-        # white space before three last characters
         code = code.replace(" ", "")
         code = code[:-3] + " " + code[-3:]
         return code
@@ -52,10 +50,7 @@ class PostcodeUK(PostcodeI):
     def __init__(self, code: str):
         cls = self.__class__
 
-        # formats the postal code
         code = cls.format(code)
-
-        # if this code is not a valid UK postal code, raise an error
         if not cls.is_valid(code):
             raise ValueError("Invalid UK postal code '%s'" % code)
 
