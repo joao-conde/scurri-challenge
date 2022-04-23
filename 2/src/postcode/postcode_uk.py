@@ -11,6 +11,14 @@ class PostcodeUK(Postcode):
     def is_valid(cls, code: str):
         return POSTCODE_REGEX.match(code) != None
 
+    @classmethod
+    def format_code(cls, code: str):
+        # remove all unecessary white space and add mandatory
+        # white space before three last characters
+        code = code.replace(" ", "")
+        code = code[:-3] + " " + code[-3:]
+        return code
+
     def __init__(self, code: str):
         # if this code is not a valid UK
         # postal code, raise an error
@@ -20,12 +28,3 @@ class PostcodeUK(Postcode):
 
         self.area = ""
         self.district = ""
-
-    def format_code(code: str):
-        return code if code[-4] == " " else code[:-4] + " " + code[-4:]
-
-    def parse_code(code: str):
-        return dict(
-            outward = code[:2],
-            inward = code[2:]
-        )
