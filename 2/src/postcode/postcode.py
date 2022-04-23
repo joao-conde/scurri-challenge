@@ -1,9 +1,13 @@
+from .postcode_uk import PostcodeUK
+
 class Postcode:
 
-    @classmethod
-    def is_valid(cls, code: str, format = False):
-        raise NotImplementedError()
+    COUNTRIES = {
+        "uk": PostcodeUK
+    }
 
     @classmethod
-    def format(cls, code: str):
-        raise NotImplementedError()
+    def build(cls, country):
+        country = country.lower()
+        if country not in cls.COUNTRIES: return None
+        return cls.COUNTRIES[country]
