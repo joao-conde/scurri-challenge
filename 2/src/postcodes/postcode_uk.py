@@ -35,10 +35,18 @@ class PostcodeUK(PostcodeI):
         # resolves the several components of an UK postal code
         self.code = code
         self.outward, self.inward = self.code.split(" ", 1)
-        self.sector = self.inward[0]
-        self.unit = self.inward[1:]
         self.area = self.outward[:2] if self.outward[1].isalpha() else self.outward[0]
         self.district = self.outward[2:] if self.outward[1].isalpha() else self.outward[1:]
+        self.sector = self.inward[0]
+        self.unit = self.inward[1:]
 
     def __str__(self):
-        return "%s-%s-%s" % (self.code, self.outward, self.inward)
+        display = "PostcodeUK("
+        display += "code='%s'," % self.code
+        display += "outward='%s'," % self.outward
+        display += "area='%s'," % self.area
+        display += "district='%s'," % self.district
+        display += "sector='%s'," % self.sector
+        display += "unit='%s'" % self.unit
+        display += ")"
+        return display
