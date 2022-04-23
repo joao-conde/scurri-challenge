@@ -6,4 +6,3 @@ class TestUtilsMixin(unittest.TestCase):
             func()
         except error_type:
             raise AssertionError("%s not raised by %s" % (error_type, func))
-        
