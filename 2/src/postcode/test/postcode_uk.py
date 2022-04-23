@@ -9,8 +9,11 @@ class PostcodeUKTest(
     TestUtilsMixin
 ):
     def test_is_valid(self):
-        is_valid = postcode.PostcodeUK.is_valid("123")
+        is_valid = postcode.PostcodeUK.is_valid("L 1 8 J Q")
         self.assertFalse(is_valid)
+        
+        is_valid = postcode.PostcodeUK.is_valid("L 1 8 J Q", format = True)
+        self.assertTrue(is_valid)
 
         is_valid = postcode.PostcodeUK.is_valid("L1 8JQ")
         self.assertTrue(is_valid)
