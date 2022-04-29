@@ -11,7 +11,7 @@ There are shorter ways to write a FizzBuzz but I prefer readable code.
 
 ## Challenge 2
 
-> *"A bracket is considered to be any one of the following characters: (, ), {, }, [, or ]. Two brackets are considered to be a matched pair if the opening bracket (i.e., (, [, or {) occurs to the left of a closing bracket (i.e., ), ], or }) of the exact same type. There are three types of matched pairs of brackets: [], {}, and ().".*
+> *"A bracket is considered to be any one of the following characters: (, ), {, }, [, or ]. Two brackets are considered to be a matched pair if the opening bracket (i.e., (, [, or {) occurs to the left of a closing bracket (i.e., ), ], or }) of the exact same type. There are three types of matched pairs of brackets: [], {}, and ().". Write a program that outputs whether a sequence of chars is balanced.*
 
 [Folder 2](2/) contains the solution for the second challenge.
 I used a stack to keep track of the opening and closing of chars and if the stack is empty at the end it is balanced.
