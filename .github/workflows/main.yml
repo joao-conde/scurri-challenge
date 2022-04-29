@@ -11,5 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: python --version
-      - run: cd 1/ && python main.py
-      - run: cd 2/ && python setup.py test
+      - run: cd 1/ && python fizzbuzz.py
+      - run: cd 2/ && python balance.py
+      - run: cd 3/ && python setup.py test
